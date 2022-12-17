@@ -1,0 +1,20 @@
+
+//Laravel Example link: https://youtu.be/_QUEEJNzRaw
+
+composer create-project laravel/laravel exmple-app
+make model-->
+php artisan make:model -a student
+
+#after database changes run this command  
+>php artisan migrate:fresh (All database clear reset & update new)
+>php artisan migrate (if i add new model for migrations folder refrash)
+
+#blade File Location: 
+resources>views>blade file
+
+#model location:
+database>migrations>2022_12_17_042649_create_students_table.php
+#route location:
+> routes>web.php
+route make:
+Route::get('create', [StudentController::class, 'create'])->name('create');
