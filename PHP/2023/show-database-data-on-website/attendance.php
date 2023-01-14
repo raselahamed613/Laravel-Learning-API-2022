@@ -2,8 +2,9 @@
 <?php
 include_once 'includes/dbh.php';
 
-// $sql = 'SELECT * FROM log_data WHERE card_number=0013159803 AND (time BETWEEN 2023-01-10 00:00:01 and 2023-01-10 23:59:59) AND id ORDER BY ID ASC LIMIT 1';
-$sql = 'SELECT * FROM log_data WHERE card_number=0013159803';
+// $sql = "SELECT * FROM log_data WHERE card_number='0013159803' AND (time BETWEEN '2023-01-10 00:00:01' and '2023-01-10 23:59:59') AND id ORDER BY ID ASC LIMIT 1";
+// $sql = 'SELECT * FROM log_data WHERE card_number=0013159803';
+$sql = "SELECT * FROM log WHERE card_no='0013159803' AND (time BETWEEN '2023-01-01 00:00:01' and '2023-01-14 23:59:59') AND id ORDER BY ID ASC LIMIT 1";
 $result = mysqli_query($conn, $sql);
 
 ?>
@@ -20,20 +21,24 @@ $result = mysqli_query($conn, $sql);
         <tr>
             <td>Employee Name</td>
             <td>Card Number</td>
-            <td>Day1</td>
-            <td>Day2</td>
-            <td>Day3</td>
-            <td>Day4</td>
-            <td>Day5</td>        
+            <?php 
+                for($i=1;$i<31; $i++){
+            ?> 
+            <td>Day<?php echo $i?></td>
+            <?php } ?>      
         </tr>
         <?php while ($data = mysqli_fetch_assoc($result)) { ?>
             <tr>
-                <td><?php echo $data['card_number'] ?></td>
-                <td><?php echo $data['in_out'] ?></td>
-              
+                <td></td>
+                <td><?php echo $data['card_no'] ?></td>
+                <?php
+                    for($i=0;$i<30;$i++){
+                ?>
+                <td><?php echo $data['time']?></td>
+                <?php } ?>  
+                
             </tr>
         <?php } ?>
     </table>
 </body>
-
 </html>
