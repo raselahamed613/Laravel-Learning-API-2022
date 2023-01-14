@@ -7,5 +7,5 @@ $dbName = "loginsystem";
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 
-
+// mysqli_close($conn);
 ?>
